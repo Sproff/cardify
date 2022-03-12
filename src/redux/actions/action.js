@@ -1,16 +1,9 @@
 import {
-	GET_LAYOUT,
 	FILTER_SEARCH,
 	SORT_BY_NAME,
 	SORT_BY_CREATION,
+	SELECT_FAVOURITE,
 } from "../constants/types";
-
-export const getlayout = (layout) => {
-	return {
-		type: GET_LAYOUT,
-		payload: layout,
-	};
-};
 
 export const filterSearch = (payload) => {
 	return {
@@ -19,16 +12,21 @@ export const filterSearch = (payload) => {
 	};
 };
 
-export const sortByName = (payload) => {
+export const selectFavourite = (data) => {
 	return {
-		type: SORT_BY_NAME,
-		payload,
+		type: SELECT_FAVOURITE,
+		payload: data,
 	};
 };
 
-export const sortByCreation = (payload) => {
+export const sortByName = () => {
+	return {
+		type: SORT_BY_NAME,
+	};
+};
+
+export const sortByCreation = () => {
 	return {
 		type: SORT_BY_CREATION,
-		payload,
 	};
 };

@@ -1,30 +1,33 @@
 import {
-	GET_USERS,
 	FILTER_SEARCH,
 	SORT_BY_NAME,
 	SORT_BY_CREATION,
+	SELECT_FAVOURITE,
 } from "../constants/types";
 import { contacts } from "../../utils/data";
 
 const intialState = {
-	isLoading: false,
 	data: contacts,
 	filteredData: contacts,
-	layout: "grid",
+};
+
+const sortArray = (type, data) => {
+	if (type === "name") {
+		const sorted = [...data].sort((a, b) => a.name.localeCompare(b.name));
+
+		return sorted;
+	}
+	const sorted = [...data].sort((a, b) => a.created.localeCompare(b.created));
+
+	return sorted;
 };
 
 const reducer = (state = intialState, action) => {
 	switch (action.type) {
-		case GET_USERS:
-			return {
-				...state,
-				isLoading: true,
-			};
 		case FILTER_SEARCH: {
 			const search = action.payload.search;
 			const userContacts = state.data;
-			const filteredContacts = state.filteredData;
-			console.log(filteredContacts);
+
 			const filteredResults = !search
 				? userContacts
 				: userContacts.filter((user) => {
@@ -36,10 +39,34 @@ const reducer = (state = intialState, action) => {
 				filteredData: filteredResults,
 			};
 		}
-		case SORT_BY_NAME:
-			return state;
-		case SORT_BY_CREATION:
-			return state;
+
+		case SELECT_FAVOURITE: {
+			return {
+				...state,
+				filteredData: action.payload,
+			};
+		}
+
+		case SORT_BY_NAME: {
+			const filteredContact = state.filteredData;
+			const sortByName = sortArray("name", filteredContact);
+
+			return {
+				...state,
+				filteredData: sortByName,
+			};
+		}
+
+		case SORT_BY_CREATION: {
+			const filteredCreation = state.filteredData;
+			const sortByCreation = sortArray("created", filteredCreation);
+
+			return {
+				...state,
+				filteredData: sortByCreation,
+			};
+		}
+
 		default:
 			return state;
 	}
