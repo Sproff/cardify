@@ -30,6 +30,7 @@
 			}
 		],
 		"arrow-body-style": "off",
-		"default-param-last": 0
+		"default-param-last": 0,
+		"prefer-destructuring": ["error", { "object": false, "array": false }]
 	}
 }

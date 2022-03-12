@@ -23,3 +23,23 @@ html {
 .icon:hover {
 	color: #face2d;
 }
+
+.gridLayout {
+	display: grid;
+	color: #d7cdcd;
+}
+
+.gridLayout.active {
+	color: #514c4c;
+}
+
+.listLayout {
+	display: block;
+	color: #d7cdcd;
+}
+
+.listLayout.active {
+	color: #514c4c;
+}
+
+
