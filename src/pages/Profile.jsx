@@ -1,15 +1,138 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { ImLocation2 } from "react-icons/im";
+import {
+	BiCurrentLocation,
+	BiMessageDetail,
+	BiMessageRoundedDetail,
+} from "react-icons/bi";
+import { IoMdContact } from "react-icons/io";
+import { GiUmbrella } from "react-icons/gi";
+import { getSingleUser } from "../redux/actions/action";
 
 const Profile = () => {
+	const { shortName } = useParams;
+	const userContacts = useSelector((state) => state.filteredData);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const findUser = () => {
+			dispatch(getSingleUser(shortName));
+		};
+		findUser();
+		console.log(findUser());
+	}, []);
+
 	return (
-		<div>
-			<div>
-				<div className="flex item-center">
-					<img src="" alt="" />
+		<div className="max-w-[1024px] m-auto px-8 py-8 lg:px-0">
+			<div className="text-ash text-[1.5rem] md:text-[2rem] font-bold mb-4">
+				My Chatbots Profile
+			</div>
+
+			<div className="flex justify-between items-center rounded bg-default p-12">
+				<div className="flex items-center">
+					<img
+						src={userContacts.image}
+						alt=""
+						className="rounded-full h-[70px] w-[70px] mr-4"
+					/>
 					<div>
-						<p>name</p>
+						<p className="font-bold text-xl">{userContacts.name}</p>
 						<p>plan</p>
 					</div>
+				</div>
+
+				<div>
+					<p className="font-bold text-xl">date</p>
+				</div>
+			</div>
+
+			<div className="block lg:flex lg:justify-between mb-10">
+				<div className="w-full lg:w-[63%]">
+					<div className="block md:flex md:justify-between">
+						<div className="mt-10 w-full md:w-[35%] h-[250px] bg-default rounded p-5 shadow-100 flex flex-col justify-center">
+							<div className="flex items-center">
+								<div className="mr-3 text-[2rem] text-blue-200">
+									<ImLocation2 />
+								</div>
+								<div>
+									<p className="font-medium text-md">Nigeria</p>
+									<p className="font-light text-sm">English</p>
+								</div>
+							</div>
+
+							<div className="flex items-center mt-5">
+								<div className="mr-3 text-[2rem] text-blue-200">
+									<BiCurrentLocation />
+								</div>
+								<div>
+									<p className="font-medium text-md">Timezone</p>
+									<p className="font-light text-sm">English</p>
+								</div>
+							</div>
+						</div>
+
+						<div className="mt-5 md:mt-10 w-full md:w-[63%] h-[250px] bg-default rounded p-5 shadow-100 flex">
+							<div className="flex items-center">
+								<div className="mr-3 text-[2rem] text-blue-200">
+									<IoMdContact />
+								</div>
+								<div>
+									<p className="font-medium text-md">Nigeria</p>
+									<p className="font-light text-sm">English</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="block md:flex md:justify-between mt-5">
+						<div className="w-full md:w-[63%] h-[250px] bg-default rounded p-5 shadow-100 flex">
+							<div className="flex items-center">
+								<div className="mr-3 text-[2rem] text-blue-200">
+									<BiMessageRoundedDetail />
+								</div>
+								<div>
+									<p className="font-medium text-md">Nigeria</p>
+									<p className="font-light text-sm">English</p>
+								</div>
+							</div>
+						</div>
+
+						<div className="w-full mt-5 md:mt-0 md:w-[35%] h-[250px] bg-default rounded p-5 shadow-100 flex">
+							<div className="flex items-center">
+								<div className="mr-3 text-[2rem] text-blue-200">
+									<BiMessageDetail />
+								</div>
+								<div>
+									<p className="font-medium text-md">Nigeria</p>
+									<p className="font-light text-sm">English</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="w-full lg:w-[35%] mt-10 bg-default rounded p-5 shadow-100">
+					<div className="flex flex-col justify-center items-center pt-8">
+						<div className="mr-3 text-[8rem] text-blue-200">
+							<GiUmbrella />
+						</div>
+						<p className="font-light text-md pt-6 pb-4">Status Account</p>
+						<p className="font-medium text-md pb-4">Free</p>
+						<button
+							className="bg-blue-200 rounded-md text-white-100 text-sm py-1.5 px-2 font-light"
+							type="submit"
+						>
+							Update Account
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div className="flex justify-between items-center rounded bg-default p-12 mt-4">
+				<div className="m-auto">
+					<p className="font-medium text-md md:text-xl">BLIP | Terms of use</p>
 				</div>
 			</div>
 		</div>

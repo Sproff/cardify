@@ -7,7 +7,7 @@ const ConfigureRoutes = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/:name" element={<Profile />} />
+				<Route path="/profile/:shortName" element={<Profile />} />
 			</Routes>
 			<Routes>
 				<Route index element={<Home />} />

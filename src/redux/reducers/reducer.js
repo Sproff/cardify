@@ -3,6 +3,7 @@ import {
 	SORT_BY_NAME,
 	SORT_BY_CREATION,
 	SELECT_FAVOURITE,
+	GET_SINGLE_USER,
 } from "../constants/types";
 import { contacts } from "../../utils/data";
 
@@ -64,6 +65,19 @@ const reducer = (state = intialState, action) => {
 			return {
 				...state,
 				filteredData: sortByCreation,
+			};
+		}
+
+		case GET_SINGLE_USER: {
+			const singleUser = state.filteredData;
+			const getUser = singleUser.find((user) => {
+				return user;
+			});
+			console.log(getUser);
+
+			return {
+				...state,
+				filteredData: singleUser,
 			};
 		}
 

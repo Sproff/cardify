@@ -3,6 +3,7 @@ import {
 	SORT_BY_NAME,
 	SORT_BY_CREATION,
 	SELECT_FAVOURITE,
+	GET_SINGLE_USER,
 } from "../constants/types";
 
 export const filterSearch = (payload) => {
@@ -28,5 +29,11 @@ export const sortByName = () => {
 export const sortByCreation = () => {
 	return {
 		type: SORT_BY_CREATION,
+	};
+};
+
+export const getSingleUser = () => {
+	return {
+		type: GET_SINGLE_USER,
 	};
 };
