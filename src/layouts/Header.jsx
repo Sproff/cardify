@@ -1,15 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoGrid } from "react-icons/io5";
 import { MdViewList } from "react-icons/md";
 import {
 	filterSearch,
 	sortByCreation,
 	sortByName,
+	setLayout,
 } from "../redux/actions/action";
 
 const Header = () => {
 	const dispatch = useDispatch();
+	const layout = useSelector((state) => state.layout);
 
 	const filterUserValue = (e) => {
 		const input = e.target.value;
@@ -36,6 +38,7 @@ const Header = () => {
 
 					<div className="mt-3 lg:mt-0 flex items-center space-x-2">
 						<button
+							data-testid="order-by-name-btn"
 							onClick={() => dispatch(sortByName())}
 							className="bg-blue-200 rounded-md text-white-100 text-sm py-1.5 px-2 font-light"
 							type="submit"
@@ -51,14 +54,16 @@ const Header = () => {
 						</button>
 
 						<div
+							onClick={() => dispatch(setLayout("grid"))}
 							role="presentation"
-							// className={layout ? "grid active" : "list"}
+							className={layout === "grid" ? "text-ash" : ""}
 						>
-							<IoGrid className="text-2xl text-ash cursor-pointer" />
+							<IoGrid className="text-2xl cursor-pointer" />
 						</div>
 						<div
+							onClick={() => dispatch(setLayout("list"))}
 							role="presentation"
-							// className={layout ? "gridLayout" : "listLayout active"}
+							className={layout === "list" ? "text-ash" : ""}
 						>
 							<MdViewList className="text-[2.1rem] cursor-pointer" />
 						</div>

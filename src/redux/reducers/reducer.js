@@ -4,12 +4,15 @@ import {
 	SORT_BY_CREATION,
 	SELECT_FAVOURITE,
 	GET_SINGLE_USER,
+	SET_LAYOUT,
 } from "../constants/types";
 import { contacts } from "../../utils/data";
 
 const intialState = {
 	data: contacts,
 	filteredData: contacts,
+	singleContact: [],
+	layout: "grid",
 };
 
 const sortArray = (type, data) => {
@@ -69,15 +72,20 @@ const reducer = (state = intialState, action) => {
 		}
 
 		case GET_SINGLE_USER: {
-			const singleUser = state.filteredData;
-			const getUser = singleUser.find((user) => {
-				return user;
-			});
-			console.log(getUser);
+			const getUser = state.data.find(
+				(user) => user.shortName === action.payload
+			);
 
 			return {
 				...state,
-				filteredData: singleUser,
+				singleContact: getUser,
+			};
+		}
+
+		case SET_LAYOUT: {
+			return {
+				...state,
+				layout: action.payload,
 			};
 		}
 

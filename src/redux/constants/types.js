@@ -3,3 +3,4 @@ export const SORT_BY_NAME = "SORT_BY_NAME";
 export const SORT_BY_CREATION = "SORT_BY_CREATION";
 export const SELECT_FAVOURITE = "SELECT_FAVOURITE";
 export const GET_SINGLE_USER = "GET_SINGLE_USER";
+export const SET_LAYOUT = "SET_LAYOUT";

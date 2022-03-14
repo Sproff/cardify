@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import moment from "moment";
+
 import { ImLocation2 } from "react-icons/im";
 import {
 	BiCurrentLocation,
@@ -9,42 +11,45 @@ import {
 } from "react-icons/bi";
 import { IoMdContact } from "react-icons/io";
 import { GiUmbrella } from "react-icons/gi";
+
 import { getSingleUser } from "../redux/actions/action";
 
 const Profile = () => {
-	const { shortName } = useParams;
-	const userContacts = useSelector((state) => state.filteredData);
+	const { shortName } = useParams();
+	const singleContact = useSelector((state) => state.singleContact);
 	const dispatch = useDispatch();
 
+	const formatDate = moment(singleContact.created).utc().format("DD/MM/YYYY");
+
 	useEffect(() => {
-		const findUser = () => {
-			dispatch(getSingleUser(shortName));
-		};
-		findUser();
-		console.log(findUser());
+		dispatch(getSingleUser(shortName));
 	}, []);
 
 	return (
 		<div className="max-w-[1024px] m-auto px-8 py-8 lg:px-0">
-			<div className="text-ash text-[1.5rem] md:text-[2rem] font-bold mb-4">
-				My Chatbots Profile
-			</div>
+			<Link to="/">
+				<div className="text-ash text-[1.5rem] md:text-[2rem] font-bold mb-4">
+					My Chatbots
+				</div>
+			</Link>
+
+			<h1 className="text-ash text-xl font-medium pb-6">Profile</h1>
 
 			<div className="flex justify-between items-center rounded bg-default p-12">
 				<div className="flex items-center">
 					<img
-						src={userContacts.image}
+						src={singleContact?.image}
 						alt=""
 						className="rounded-full h-[70px] w-[70px] mr-4"
 					/>
 					<div>
-						<p className="font-bold text-xl">{userContacts.name}</p>
-						<p>plan</p>
+						<p className="font-bold text-xl">{singleContact?.name}</p>
+						<p>{singleContact?.template}</p>
 					</div>
 				</div>
 
 				<div>
-					<p className="font-bold text-xl">date</p>
+					<p className="font-light text-xl">{`Created at ${formatDate}`}</p>
 				</div>
 			</div>
 
@@ -57,8 +62,8 @@ const Profile = () => {
 									<ImLocation2 />
 								</div>
 								<div>
-									<p className="font-medium text-md">Nigeria</p>
-									<p className="font-light text-sm">English</p>
+									<p className="font-medium text-md">Region and Idiom</p>
+									<p className="font-light text-sm">EUA -English (EN)</p>
 								</div>
 							</div>
 
@@ -68,7 +73,7 @@ const Profile = () => {
 								</div>
 								<div>
 									<p className="font-medium text-md">Timezone</p>
-									<p className="font-light text-sm">English</p>
+									<p className="font-light text-sm">EUA -English (EN)</p>
 								</div>
 							</div>
 						</div>
@@ -79,8 +84,10 @@ const Profile = () => {
 									<IoMdContact />
 								</div>
 								<div>
-									<p className="font-medium text-md">Nigeria</p>
-									<p className="font-light text-sm">English</p>
+									<p className="font-medium text-md">
+										{singleContact?.analytics?.user?.total}
+									</p>
+									<p className="font-light text-sm">Active users</p>
 								</div>
 							</div>
 						</div>
@@ -93,8 +100,10 @@ const Profile = () => {
 									<BiMessageRoundedDetail />
 								</div>
 								<div>
-									<p className="font-medium text-md">Nigeria</p>
-									<p className="font-light text-sm">English</p>
+									<p className="font-medium text-md">
+										{singleContact?.analytics?.message?.received}
+									</p>
+									<p className="font-light text-sm">Messages Received</p>
 								</div>
 							</div>
 						</div>
@@ -105,8 +114,10 @@ const Profile = () => {
 									<BiMessageDetail />
 								</div>
 								<div>
-									<p className="font-medium text-md">Nigeria</p>
-									<p className="font-light text-sm">English</p>
+									<p className="font-medium text-md">
+										{singleContact?.analytics?.message?.sent}
+									</p>
+									<p className="font-light text-sm">Messages Sent</p>
 								</div>
 							</div>
 						</div>

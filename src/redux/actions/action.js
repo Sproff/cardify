@@ -4,6 +4,7 @@ import {
 	SORT_BY_CREATION,
 	SELECT_FAVOURITE,
 	GET_SINGLE_USER,
+	SET_LAYOUT,
 } from "../constants/types";
 
 export const filterSearch = (payload) => {
@@ -32,8 +33,16 @@ export const sortByCreation = () => {
 	};
 };
 
-export const getSingleUser = () => {
+export const getSingleUser = (payload) => {
 	return {
 		type: GET_SINGLE_USER,
+		payload,
+	};
+};
+
+export const setLayout = (payload) => {
+	return {
+		type: SET_LAYOUT,
+		payload,
 	};
 };
