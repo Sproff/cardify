@@ -49,7 +49,7 @@ export const Card = ({ shortName, name, image, plan, created, favourite }) => {
 				className={
 					layout === "grid"
 						? "mx-auto mt-10 w-[250px] h-[250px] bg-default rounded p-5 shadow-100 hover:shadow-200"
-						: "mt-10 flex justify-between items-center w-full h-full bg-default rounded p-5 shadow-100 hover:shadow-200"
+						: "mt-10 block md:flex md:justify-between md:items-center w-full h-full bg-default rounded p-5 shadow-100 hover:shadow-200"
 				}
 			>
 				{layout === "grid" ? (
@@ -69,14 +69,14 @@ export const Card = ({ shortName, name, image, plan, created, favourite }) => {
 					className={
 						layout === "grid"
 							? "flex flex-col justify-center items-center pt-8"
-							: "flex items-center"
+							: "block md:flex items-center"
 					}
 				>
 					<Link to={`/profile/${shortName}`}>
 						<img
 							src={image}
 							alt=""
-							className="rounded-full h-[70px] w-[70px]"
+							className="m-auto md:m-0 rounded-full h-[70px] w-[70px]"
 							role="presentation"
 						/>
 					</Link>
@@ -87,13 +87,15 @@ export const Card = ({ shortName, name, image, plan, created, favourite }) => {
 							<p className="font-light text-center">{plan}</p>
 						</div>
 					) : (
-						<p className="font-bold text-xl pt-6 pb-4 ml-6">{shortName}</p>
+						<p className="font-bold text-xl pt-6 pb-4 md:ml-6 text-center">
+							{shortName}
+						</p>
 					)}
 				</div>
 
 				{layout === "grid" ? null : (
 					<div>
-						<p className="font-light">{`Created at ${formatDate}`}</p>
+						<p className="font-light text-md text-center">{`Created at ${formatDate}`}</p>
 					</div>
 				)}
 			</div>
