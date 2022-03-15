@@ -35,12 +35,12 @@ const Profile = () => {
 
 			<h1 className="text-ash text-xl font-medium pb-6">Profile</h1>
 
-			<div className="flex justify-between items-center rounded bg-default p-12">
-				<div className="flex items-center">
+			<div className="block md:flex md:justify-between md:items-center text-center rounded bg-default p-12">
+				<div className="block md:flex md:items-center">
 					<img
 						src={singleContact?.image}
 						alt=""
-						className="rounded-full h-[70px] w-[70px] mr-4"
+						className="m-auto md:mr-4 mb-4 md:mb-0 rounded-full h-[70px] w-[70px]"
 					/>
 					<div>
 						<p className="font-bold text-xl">{singleContact?.name}</p>
