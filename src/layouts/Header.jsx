@@ -29,6 +29,7 @@ const Header = () => {
 				<div className="space-x-0 lg:space-x-3 block lg:flex lg:items-center">
 					<div className="">
 						<input
+							data-testid="search-input"
 							onChange={(e) => filterUserValue(e)}
 							className="bg-default py-1.5 px-2 rounded-md font-light focus:outline-none"
 							type="text"
@@ -46,6 +47,7 @@ const Header = () => {
 							Order by name
 						</button>
 						<button
+							data-testid="order-by-creation-btn"
 							onClick={() => dispatch(sortByCreation())}
 							className="bg-blue-200 rounded-md text-white-100 text-sm py-1.5 px-2 font-light"
 							type="submit"
@@ -54,6 +56,7 @@ const Header = () => {
 						</button>
 
 						<div
+							data-testid="grid-layout"
 							onClick={() => dispatch(setLayout("grid"))}
 							role="presentation"
 							className={layout === "grid" ? "text-ash" : ""}
@@ -61,6 +64,7 @@ const Header = () => {
 							<IoGrid className="text-2xl cursor-pointer" />
 						</div>
 						<div
+							data-testid="list-layout"
 							onClick={() => dispatch(setLayout("list"))}
 							role="presentation"
 							className={layout === "list" ? "text-ash" : ""}
