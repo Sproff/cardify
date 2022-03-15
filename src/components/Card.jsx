@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
@@ -72,14 +72,14 @@ export const Card = ({ shortName, name, image, plan, created, favourite }) => {
 							: "flex items-center"
 					}
 				>
-					{/* <Link to={`/profile/${shortName}`}> */}
-					<img
-						src={image}
-						alt=""
-						className="rounded-full h-[70px] w-[70px]"
-						role="presentation"
-					/>
-					{/* </Link> */}
+					<Link to={`/profile/${shortName}`}>
+						<img
+							src={image}
+							alt=""
+							className="rounded-full h-[70px] w-[70px]"
+							role="presentation"
+						/>
+					</Link>
 
 					{layout === "grid" ? (
 						<div>

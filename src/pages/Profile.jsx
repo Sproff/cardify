@@ -49,7 +49,7 @@ const Profile = () => {
 				</div>
 
 				<div>
-					<p className="font-light text-xl">{`Created at ${formatDate}`}</p>
+					<p className="font-light text-md">{`Created at ${formatDate}`}</p>
 				</div>
 			</div>
 
